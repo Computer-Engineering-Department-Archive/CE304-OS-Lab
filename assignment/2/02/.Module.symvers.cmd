@@ -1,0 +1,1 @@
+cmd_/home/warlock/Desktop/CE304-OS-Lab/assignment/2/02/Module.symvers := sed 's/\.ko$$/\.o/' /home/warlock/Desktop/CE304-OS-Lab/assignment/2/02/modules.order | scripts/mod/modpost -m -a  -o /home/warlock/Desktop/CE304-OS-Lab/assignment/2/02/Module.symvers -e -i Module.symvers   -T -

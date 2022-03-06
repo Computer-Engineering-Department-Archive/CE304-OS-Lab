@@ -1,0 +1,1 @@
+cmd_/home/warlock/Desktop/CE304-OS-Lab/assignment/2/02/bday.mod := { echo  /home/warlock/Desktop/CE304-OS-Lab/assignment/2/02/bday.o;  echo; } > /home/warlock/Desktop/CE304-OS-Lab/assignment/2/02/bday.mod
