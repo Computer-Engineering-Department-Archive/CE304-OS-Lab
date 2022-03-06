@@ -1,0 +1,2 @@
+/home/warlock/Desktop/CE304-OS-Lab/assignment/2/simple.o
+

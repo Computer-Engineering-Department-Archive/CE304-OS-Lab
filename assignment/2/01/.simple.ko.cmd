@@ -1,0 +1,1 @@
+cmd_/home/warlock/Desktop/CE304-OS-Lab/assignment/2/simple.ko := ld -r  -m elf_x86_64  --build-id=sha1  -T scripts/module.lds -o /home/warlock/Desktop/CE304-OS-Lab/assignment/2/simple.ko /home/warlock/Desktop/CE304-OS-Lab/assignment/2/simple.o /home/warlock/Desktop/CE304-OS-Lab/assignment/2/simple.mod.o;  true
