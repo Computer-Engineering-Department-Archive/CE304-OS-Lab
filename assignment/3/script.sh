@@ -33,7 +33,11 @@ if [ $flag -eq 0 ]; then
 	elif [ $1 -eq $2 ]
 	then
 		echo "Inputs are equal:"
+<<<<<<< HEAD
 		echo $2
+=======
+		echo $1
+>>>>>>> f3fc9db ([add] script6.sh)
 	fi
 fi
 

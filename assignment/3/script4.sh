@@ -15,3 +15,7 @@ while IFS= read -r line; do
 	((++counter))
 done < "$fileAddress"
 
+# #!/bin/bash
+# for arg in "$@"; do
+#    grep -R "$arg" *
+# done
