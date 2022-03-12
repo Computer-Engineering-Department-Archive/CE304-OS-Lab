@@ -20,10 +20,10 @@ fi
 
 checkInput $1 $2
 if [ $flag -eq 0 ]; then
-	echo "=>Sum:"
+	echo "Sum:"
 	expr $1 + $2
 
-	echo "=>Comparison:"
+	echo "Comparison:"
 	if [ $1 -gt $2 ]
 	then
 		echo $1
@@ -32,7 +32,8 @@ if [ $flag -eq 0 ]; then
 		echo $2
 	elif [ $1 -eq $2 ]
 	then
-		echo "equal"
+		echo "Inputs are equal:"
+		echo $2
 	fi
 fi
 
