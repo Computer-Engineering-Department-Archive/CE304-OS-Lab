@@ -1,21 +1,20 @@
 #!/bin/bash
 
 while true; do
-	read -p 'Enter a number: ' number
+	sd=0
+	rev=0
+	sum=0
 
-	digit=0
-	reverse=0
-	digits_sum=0
-
-	while [ $number -gt 0 ]
+	read -p 'Enter a number: ' num
+	while [ $num -gt 0 ]
 	do
-		digit=$(( $number % 10 ))
-		digits_sum=$(( $digit + $digits_sum))
-		reverse=`expr $reverse \* 10 + $digit` 
-		number=$(( $number / 10 ))
+		sd=$(( $num % 10 ))
+		rev=$(( $rev * 10 + $sd ))
+		sum=$(( $sd + $sum ))
+		num=$(( $num / 10 ))
 	done
 
-	echo "Reverse number is: $reverse"
-	echo "Sum of digits is: $digits_sum"	
+	echo "Reverse number is: $rev"
+	echo "Sum of digits is: $sum"	
 done
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 flag=0
-function checkInput(){
+function check(){
 if [ -z $1 ]; then
 	echo "First input is empty"
 	flag=1
@@ -18,7 +18,7 @@ elif  ! [[ $2 =~ ^[+-]?[0-9]+$ ]]; then
 fi
 }
 
-checkInput $1 $2
+check $1 $2
 if [ $flag -eq 0 ]; then
 	echo "Sum:"
 	expr $1 + $2
@@ -33,11 +33,7 @@ if [ $flag -eq 0 ]; then
 	elif [ $1 -eq $2 ]
 	then
 		echo "Inputs are equal:"
-<<<<<<< HEAD
 		echo $2
-=======
-		echo $1
->>>>>>> f3fc9db ([add] script6.sh)
 	fi
 fi
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 flag=0
-function checkInput(){
+function check(){
 if [ -z $1 ]; then
 	echo "First number is empty"
 	flag=1
@@ -18,7 +18,7 @@ elif  ! [[ $3 =~ ^[+-]?[0-9]+$ ]]; then
 fi
 }
 
-checkInput $1 $2 $3
+check $1 $2 $3
 if [ $flag -eq 0 ]; then
 	case $2 in
 	"+")

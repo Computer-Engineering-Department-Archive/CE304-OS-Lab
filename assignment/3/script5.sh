@@ -1,7 +1,7 @@
 #!/bin/bash
 
-function first(){
-	for i in 1 2 3 4 5
+function pattern1(){
+	for ((i=1;i<=5;i++))
 	do
 		for j in $(seq 1 $i)
 		do
@@ -11,8 +11,8 @@ function first(){
 	done
 }
 
-function second(){
-	for i in 1 2 3 4 5 6
+function pattern2(){
+	for ((i=1;i<=6;i++))
 	do
 		for ((j=5;j>=$i;j--))
 		do
@@ -24,7 +24,7 @@ function second(){
 		done
 		echo
 	done
-	for i in 1 2 3 4 5 6
+	for ((i=1;i<=6;i++))
 	do
 		for ((j=1;j<$i;j++))
 		do
@@ -39,7 +39,7 @@ function second(){
 	
 }
 
-function third(){
+function pattern3(){
 	for ((i=1;i<=5;i++))
 	do
 		
@@ -53,10 +53,10 @@ function third(){
 
 case $1 in
 	"1")
-		first
+		pattern1
 		;;
 	"2")
-		second
+		pattern2
 		;;
 	"3")
 		third
