@@ -59,7 +59,7 @@ case $1 in
 		pattern2
 		;;
 	"3")
-		third
+		pattern3
 		;;	
 esac
 
