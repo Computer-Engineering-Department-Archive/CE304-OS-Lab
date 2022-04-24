@@ -70,6 +70,7 @@ double calculate(int number_of_samples)
     int shmid = create_segment();
     int *hist = attach_segment(shmid);
     srand(time(0));
+
     int rand_num, counter;
     if (fork() == 0)
     {
@@ -89,6 +90,7 @@ double calculate(int number_of_samples)
         exit(0);
     }
     else
+    {
         for (int i = 0; i < number_of_samples / 2; i++)
         {
             counter = 0;
@@ -102,7 +104,9 @@ double calculate(int number_of_samples)
             }
             hist[counter + 12] += 1;
         }
-    print_histogram(hist, number_of_samples);
+    }
+
+    // print_histogram(hist, number_of_samples);
     detach_segment(hist);
     remove_segment(shmid);
     clock_t end = clock();
@@ -110,9 +114,12 @@ double calculate(int number_of_samples)
     return time_spend;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    double time_spend = calculate(500000);
+    int number_of_samples = strtol(argv[1], NULL, 10);
+    if (number_of_samples <= 0) return 0;
+
+    double time_spend = calculate(number_of_samples);
     printf("Time= %f\n", time_spend);
     return 0;
 }

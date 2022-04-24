@@ -31,21 +31,25 @@ int main()
         perror("shmget error");
         exit(-1);
     }
+
     shNode *shMem; // shared memory
     if ((shMem = (shNode *)shmat(shmid, NULL, 0)) == (shNode *)-1)
     {
         perror("shmat error");
         exit(-1);
     }
+
     pthread_mutexattr_t attr;
     pthread_mutexattr_init(&attr);
     pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_SHARED);
     pthread_mutex_init(&(shMem->mutex), &attr);
+
     if (shmdt(shMem) == -1)
     {
         perror("shmdt error");
         exit(-1);
     }
+
     mainPid = getpid();
     // create writer process:
     pid = fork();
@@ -54,6 +58,7 @@ int main()
         writerFunc();
         return 0;
     }
+
     // create readers:
     for (int i = 0; i < 2; i++)
     {
@@ -67,11 +72,13 @@ int main()
             break;
         }
     }
+
     if (pid == 0)
     {
         readerFunc();
         return 0;
     }
+    
     if (getpid() == mainPid)
     {
         for (int i = 0; i < 3; i++)
@@ -96,6 +103,7 @@ void writerFunc()
         perror("shmat error");
         exit(-1);
     }
+
     bool flag = true;
     while (flag)
     {
@@ -112,6 +120,7 @@ void writerFunc()
         pthread_mutex_unlock(&(shMem->mutex));
         sleep(0.03);
     }
+
     if (shmdt(shMem) == -1)
     {
         perror("shmdt error");
@@ -128,6 +137,7 @@ void readerFunc()
         perror("shmat error");
         exit(-1);
     }
+    
     bool flag = true;
     while (flag)
     {
@@ -136,21 +146,25 @@ void readerFunc()
         { // first reader should lock the mutex
             pthread_mutex_lock(&(shMem->mutex));
         }
+
         printf("Reader has access.\n");
         printf("PID = %d\n", getpid());
         printf("Counter = %d\n", shMem->ctr);
+
         // check if it has reached the limit:
         if (shMem->ctr >= 5)
         {
             flag = false;
         }
         shMem->readerCtr--;
+
         if (shMem->readerCtr == 0)
         {
             pthread_mutex_unlock(&(shMem->mutex));
         }
         sleep(0.03);
     }
+
     if (shmdt(shMem) == -1)
     {
         perror("shmdt error");
