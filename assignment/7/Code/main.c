@@ -29,6 +29,7 @@ bool isSafe()
     {
         work[i] = available[i];
     }
+    // set the available res
 
     bool finish[NUMBER_OF_CUSTOMERS];
     for (int i = 0; i < NUMBER_OF_CUSTOMERS; i++)
@@ -165,10 +166,8 @@ bool release_resources(int release[], int customer_num)
 void release_resources_control(int customer_num)
 {
     pthread_mutex_lock(&lock);
-    for (int i = 0; i < NUMBER_OF_RESOURCES; i++)
-        release_resources(maximum[customer_num], customer_num);
+    release_resources(allocation[customer_num], customer_num);
     pthread_mutex_unlock(&lock);
-    printf("Thread %d finished execution \n", customer_num);
 }
 
 void *getResources(void *arg)
@@ -195,6 +194,7 @@ int main(int argc, char *argv[])
         printf("not enough arguments!\n");
         exit(1);
     }
+    
     // initialization of our data structures:
     for (int i = 0; i < NUMBER_OF_RESOURCES; i++)
     {
