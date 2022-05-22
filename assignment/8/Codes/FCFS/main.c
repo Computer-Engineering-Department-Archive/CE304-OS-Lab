@@ -37,6 +37,7 @@ int main() {
     float wtAvg , ttAvg = 0;
     float wtSum, ttSum = 0;
     for(int i=0 ; i<n; i++){
+        printf("i: %d, pid: %d, bt: %d, wt: %d, tt: %d\n", i, processes[i].pid, processes[i].bt, processes[i].wt, processes[i].tt);
         wtSum += processes[i].wt;
         ttSum += processes[i].tt;
     }

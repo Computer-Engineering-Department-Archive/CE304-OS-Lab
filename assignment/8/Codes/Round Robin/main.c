@@ -18,9 +18,11 @@ int main() {
         scanf("%d",&bt[i]);
         struct process p;
         p.bt = bt[i];
+        p.wt = 0;
         p.pid=i;
         processes[i] = p;
         processes[i].lastRoundTime = 0;
+
     }
     int timeQuantom;
     int time = 0;
@@ -32,11 +34,11 @@ int main() {
         if(processes[i].bt>=timeQuantom){
             processes[i].bt -= timeQuantom;
             processes[i].wt += (time - processes[i].lastRoundTime );
-            //printf("time = %d\n",time);
-            //printf("lastRoundTime = %d\n",processes[i].lastRoundTime);
-            printf("process %d\n",i+1);
             time += timeQuantom;
             processes[i].lastRoundTime = time;
+            printf("process %d\n",i+1);
+            printf("time = %d\n",time);
+            printf("lastRoundTime = %d, burstTime = %d, WaitingTime = %d\n",processes[i].lastRoundTime, processes[i].bt, processes[i].wt);
         }
         else{
             if (processes[i].bt == 0) {
@@ -44,12 +46,12 @@ int main() {
             } else {
                 int temp = processes[i].bt;
                 processes[i].bt = 0;
-                //printf("time = %d\n",time);
-                //printf("lastRoundTime = %d\n",processes[i].lastRoundTime);
-                processes[i].wt += (time - processes[i].lastRoundTime );
-                printf("process %d\n",i+1);
+                processes[i].wt += (time - processes[i].lastRoundTime);
                 time += temp;
                 processes[i].lastRoundTime = time;
+                printf("process %d\n",i+1);
+                printf("time = %d\n",time);
+                printf("lastRoundTime = %d, burstTime = %d, WaitingTime = %d\n",processes[i].lastRoundTime, processes[i].bt, processes[i].wt);
             }
         }
         i++;
@@ -75,6 +77,7 @@ int main() {
     float wtAvg , ttAvg = 0;
     float wtSum, ttSum = 0;
     for(int i=0 ; i<n; i++){
+        printf("i: %d, pid: %d, bt: %d, wt: %d, tt: %d\n", i, processes[i].pid, processes[i].bt, processes[i].wt, processes[i].tt);
         wtSum += processes[i].wt;
         ttSum += processes[i].tt;
     }

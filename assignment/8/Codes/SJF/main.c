@@ -6,10 +6,14 @@ struct process{
     int wt, tt;
 };
 
-void swap(int x, int y){
-int temp = x;
-x = y;
-y = temp;
+void swap(int *x, int *y){
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void pprint(struct process p){
+    printf('pid: %d\tburst time: %d\t waiting time: %d\tturnaround time: %d\n', p.pid, p.bt, p.wt, p.tt);
 }
 
 int main() {
@@ -46,6 +50,8 @@ int main() {
         }
     }
 
+    processes[0].wt = 0;
+    processes[0].tt = processes[0].bt;
     for(int i=1 ; i<n; i++){
         int wt = 0;
         for(int j=0; j<i ; j++){
@@ -57,10 +63,10 @@ int main() {
         processes[i].tt=processes[i].wt + processes[i].bt;
     }
 
-
     float wtAvg , ttAvg = 0;
     float wtSum, ttSum = 0;
     for(int i=0 ; i<n; i++){
+        printf("i: %d, pid: %d, bt: %d, wt: %d, tt: %d\n", i, processes[i].pid, processes[i].bt, processes[i].wt, processes[i].tt);
         wtSum += processes[i].wt;
         ttSum += processes[i].tt;
     }
